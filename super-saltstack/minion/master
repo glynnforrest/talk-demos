@@ -1,0 +1,6 @@
+# minion config for the master
+master: 192.168.4.2
+
+beacons:
+    inotify:
+        /home/vagrant/motd.txt: {}

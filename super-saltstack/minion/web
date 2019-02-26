@@ -1,0 +1,2 @@
+# minion config for the web minion
+master: 192.168.4.2

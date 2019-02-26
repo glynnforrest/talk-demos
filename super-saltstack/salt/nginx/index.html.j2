@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Super SaltStack</title>
+    <style>
+     body {
+       width: 55em;
+       margin: 0 auto;
+       font-family: Tahoma, Verdana, Arial, sans-serif;
+     }
+     h1 {
+       text-align: center;
+     }
+     img {
+       width: 50em;
+       margin: 0 auto;
+     }
+    </style>
+  </head>
+  <body>
+    <h1>
+      {{salt['cmd.run']('if test -f /tmp/motd.txt; then cat /tmp/motd.txt; else echo Default message; fi')}}
+    </h1>
+    <img src="/super-saltstack.jpg" />
+  </body>
+</html>
