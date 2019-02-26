@@ -1,0 +1,150 @@
+* Package
+** composer.json
+   #+BEGIN_SRC json
+     "autoload": {
+         "psr-4": {
+             "LeftPad\\": "src"
+         }
+     },
+   #+END_SRC
+** phpunit
+   ./vendor/bin/phpunit --generate-configuration
+   mv phpunit.xml phpunit.xml.dist
+** pad
+   #+BEGIN_SRC php
+     public static function pad(string $string, int $length) : string
+     {
+         return str_pad($string, $length, " ", STR_PAD_LEFT);
+     }
+   #+END_SRC
+* Package job
+** Composer docker run command
+   #+BEGIN_SRC sh
+     docker run --rm --interactive --tty --volume $PWD:/app composer install
+   #+END_SRC
+** Phpunit docker run command
+   #+BEGIN_SRC sh
+     docker run -it --rm -v $PWD:/app -w /app php:7.2-cli ./vendor/bin/phpunit
+   #+END_SRC
+** Docker agent clauses
+   #+BEGIN_SRC groovy
+     agent {
+         docker {
+             image 'composer'
+             args  '-v $PWD:/app'
+         }
+     }
+
+     agent {
+         docker {
+             image 'php:7.2-cli'
+             args  '-v $PWD:/app -w /app'
+         }
+     }
+   #+END_SRC
+** Jenkinsfile
+   #+BEGIN_SRC groovy
+     pipeline {
+         agent "any"
+
+         triggers {
+             pollSCM('* * * * *')
+         }
+
+         stages {
+             stage('build') {
+                 agent {
+                     docker {
+                         image 'composer'
+                         args  '-v $PWD:/app'
+                     }
+                 }
+                 steps {
+                     sh 'composer install'
+                 }
+             }
+             stage('test') {
+                 agent {
+                     docker {
+                         image 'php:7.2-cli'
+                         args  '-v $PWD:/app -w /app'
+                     }
+                 }
+
+                 steps {
+                     sh './vendor/bin/phpunit'
+                 }
+             }
+         }
+
+         post {
+             always {
+                 deleteDir()
+             }
+         }
+     }
+   #+END_SRC
+* Satis job
+** Satis config
+   #+BEGIN_SRC json
+     {
+       "name": "Private PHP Composer packages",
+       "homepage": "http://192.168.37.37/pkg",
+       "repositories": [
+         {
+           "type": "vcs",
+           "url":  "http://192.168.37.37:3000/gituser/left-pad.git"
+         }
+       ],
+       "require-all": true,
+       "config": {
+         "secure-http": false
+       }
+     }
+   #+END_SRC
+** Satis docker run command
+   #+BEGIN_SRC sh
+     docker run --rm -i -v $PWD:/build composer/satis
+   #+END_SRC
+** Jenkinsfile
+   #+BEGIN_SRC groovy
+     pipeline {
+         agent any
+
+         triggers {
+             upstream(upstreamProjects: 'left-pad', threshold: hudson.model.Result.SUCCESS)
+         }
+
+         stages {
+             stage('build') {
+                 steps {
+                     sh 'docker run --rm -i -v $PWD:/build composer/satis'
+                 }
+             }
+             stage('sync') {
+                 steps {
+                     sh 'rsync -av $PWD/output/ /var/www/html/pkg/'
+                 }
+             }
+         }
+     }
+   #+END_SRC
+* Job DSL
+** Jenkinsfile
+   #+BEGIN_SRC groovy
+     multibranchPipelineJob('left-pad') {
+         branchSources {
+             git {
+                 remote('http://192.168.37.37:3000/gituser/left-pad.git')
+             }
+         }
+     }
+
+     multibranchPipelineJob('satis-config') {
+         branchSources {
+             git {
+                 remote('http://192.168.37.37:3000/gituser/satis-config.git')
+             }
+         }
+     }
+   #+END_SRC

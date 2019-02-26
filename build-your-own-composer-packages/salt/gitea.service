@@ -1,0 +1,16 @@
+[Unit]
+Description=Gitea git server
+After=syslog.target
+
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/var/lib/gitea/
+User=gitea
+Group=gitea
+ExecStart=/usr/bin/gitea web --config /etc/gitea.ini --port 3000
+Environment=USER=gitea HOME=/home/gitea GITEA_WORK_DIR=/var/lib/gitea
+
+[Install]
+WantedBy=multi-user.target
