@@ -1,0 +1,10 @@
+{
+    "require": {
+        "twig/twig": "^2.12"
+    },
+    "autoload": {
+        "psr-4": {
+            "Project\\": "src/"
+        }
+    }
+}
