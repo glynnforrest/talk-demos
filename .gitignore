@@ -1,1 +1,3 @@
 .vagrant/
+refactoring-with-rector/vendor/
+refactoring-with-rector/*/vendor/
