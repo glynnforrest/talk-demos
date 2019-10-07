@@ -23,3 +23,11 @@ cd 2-messy-code
 ```
 
 Note the use of `%vendor%` to import the *code-quality* set.
+
+## 4. Custom rector
+
+```bash
+cd 4-custom-rector
+
+../vendor/bin/rector process src -c custom.yaml
+```
