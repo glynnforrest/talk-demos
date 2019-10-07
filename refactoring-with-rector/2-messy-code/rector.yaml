@@ -1,0 +1,6 @@
+imports:
+    # Use `%vendor%` to import a built-in set easily
+    - { resource: '%vendor%/rector/rector/config/set/code-quality/code-quality.yaml' }
+
+services:
+    Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector: ~

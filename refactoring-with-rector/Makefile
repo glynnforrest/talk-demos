@@ -8,3 +8,4 @@ install:
 
 clean:
 	git checkout 1-twig-extension
+	git checkout 2-messy-code
