@@ -1,0 +1,18 @@
+imports:
+    # Upgrade from PHP 5.2 to 7.3
+    - { resource: '%vendor%/rector/rector/config/set/php/php52.yaml' }
+    - { resource: '%vendor%/rector/rector/config/set/php/php53.yaml' }
+    - { resource: '%vendor%/rector/rector/config/set/php/php54.yaml' }
+    - { resource: '%vendor%/rector/rector/config/set/php/php55.yaml' }
+    - { resource: '%vendor%/rector/rector/config/set/php/php56.yaml' }
+    - { resource: '%vendor%/rector/rector/config/set/php/php70.yaml' }
+    - { resource: '%vendor%/rector/rector/config/set/php/php71.yaml' }
+    - { resource: '%vendor%/rector/rector/config/set/php/php72.yaml' }
+    - { resource: '%vendor%/rector/rector/config/set/php/php73.yaml' }
+    # Also clean up the code
+    - { resource: '%vendor%/rector/rector/config/set/code-quality/code-quality.yaml' }
+    - { resource: '%vendor%/rector/rector/config/set/coding-style/coding-style.yaml' }
+
+services:
+    Rector\TypeDeclaration\Rector\FunctionLike\ReturnTypeDeclarationRector: ~
+    Rector\TypeDeclaration\Rector\FunctionLike\ParamTypeDeclarationRector: ~

@@ -24,6 +24,14 @@ cd 2-messy-code
 
 Note the use of `%vendor%` to import the *code-quality* set.
 
+## 3. Upgrade old code
+
+```bash
+cd 3-old-code
+
+../vendor/bin/rector process lib -c old-to-new.yaml
+```
+
 ## 4. Custom rector
 
 ```bash
