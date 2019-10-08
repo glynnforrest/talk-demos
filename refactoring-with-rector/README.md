@@ -1,5 +1,7 @@
 # Rector examples
 
+Run `make setup` first.
+
 ## 1. Upgrade and fix a simple Twig extension
 
 ```bash
