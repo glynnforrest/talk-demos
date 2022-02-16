@@ -1,0 +1,11 @@
+{
+  "request_id": "f0463f7a-9d98-e689-83a3-a80617b5a0bb",
+  "lease_id": "database/creds/my-database/CiJG2YV6W4s7QIhj8hZPUAmG",
+  "lease_duration": 2764800,
+  "renewable": true,
+  "data": {
+    "password": "qvL-78da6zg28feg6dp",
+    "username": "v-root-postgres-mD1tvThoN364PudYh3Ud-1644872138"
+  },
+  "warnings": null
+}

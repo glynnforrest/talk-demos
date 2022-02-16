@@ -1,0 +1,19 @@
+{
+  "request_id": "2d9487d8-093d-1d86-4433-65bb228b149e",
+  "lease_id": "",
+  "lease_duration": 2764800,
+  "renewable": false,
+  "data": {
+    "users": [
+      {
+        "access_level": 3,
+        "name": "Alice"
+      },
+      {
+        "access_level": 5,
+        "name": "Bob"
+      }
+    ]
+  },
+  "warnings": null
+}

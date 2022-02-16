@@ -1,0 +1,9 @@
+$ vault read database/creds/my-database
+
+Key                Value
+---                -----
+lease_id           database/creds/my-database/CiJG2YV6W4s7QIhj8hZPUAmG
+lease_duration     768h
+lease_renewable    true
+password           qvL-78da6zg28feg6dp
+username           v-root-postgres-mD1tvThoN364PudYh3Ud-1644872138

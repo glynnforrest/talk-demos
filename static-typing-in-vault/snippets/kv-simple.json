@@ -1,0 +1,11 @@
+{
+  "request_id": "d9c8ec0b-9312-3c5a-86ca-4223ffccca7e",
+  "lease_id": "",
+  "lease_duration": 2764800,
+  "renewable": false,
+  "data": {
+    "password": "hunter2",
+    "user": "admin"
+  },
+  "warnings": null
+}

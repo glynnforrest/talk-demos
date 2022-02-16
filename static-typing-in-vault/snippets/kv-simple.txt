@@ -1,0 +1,7 @@
+$ vault kv get secret/simple
+
+====== Data ======
+Key         Value
+---         -----
+password    hunter2
+user        admin

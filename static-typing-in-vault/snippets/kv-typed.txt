@@ -1,0 +1,8 @@
+$ vault kv get secret/typed
+
+======= Data =======
+Key           Value
+---           -----
+is_special    true
+number        100
+secret        s3cr3t_v@lue

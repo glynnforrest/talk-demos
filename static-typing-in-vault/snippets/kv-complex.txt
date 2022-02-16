@@ -1,0 +1,6 @@
+$ vault kv get secret/complex
+
+==== Data ====
+Key      Value
+---      -----
+users    [map[access_level:3 name:Alice] map[access_level:5 name:Bob]]

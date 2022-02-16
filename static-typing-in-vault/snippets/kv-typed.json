@@ -1,0 +1,12 @@
+{
+  "request_id": "a8fa5a7d-e67e-da49-26ce-ca4f07d84150",
+  "lease_id": "",
+  "lease_duration": 2764800,
+  "renewable": false,
+  "data": {
+    "is_special": true,
+    "number": 100,
+    "secret": "s3cr3t_v@lue"
+  },
+  "warnings": null
+}
