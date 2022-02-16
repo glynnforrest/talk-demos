@@ -1,0 +1,84 @@
+{
+  "rules": [
+    {
+      "name": "s3-creds",
+      "description": "Credentials for an AWS S3 bucket",
+      "pattern": "secret/(production|staging)/.+/s3-creds$",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "access_key_id": {
+            "type": "string"
+          },
+          "secret_access_key": {
+            "type": "string"
+          },
+          "bucket": {
+            "type": "string"
+          },
+          "region": {
+            "type": "string",
+            "pattern": "^(us|eu)-[a-z]+-[0-9]$"
+          }
+        },
+        "additionalProperties": false,
+        "required": [
+          "access_key_id",
+          "secret_access_key",
+          "bucket",
+          "region"
+        ]
+      }
+    },
+    {
+      "name": "oauth-client-credentials",
+      "description": "OAuth2 client credentials for our API",
+      "pattern": "api-creds$",
+      "keys": {
+        "client_id": "string",
+        "client_secret": "string"
+      }
+    },
+    {
+      "name": "encryption-key",
+      "description": "Super secret encryption key",
+      "pattern": "secret/.+/encryption-key$",
+      "keys": {
+        "key": "string:^[a-zA-Z0-9]{60}$",
+        "rounds": "integer:300-600",
+        "audit": "optional_boolean"
+      }
+    },
+    {
+      "name": "complex",
+      "description": "An example secret with a complex structure",
+      "pattern": "^secret/complex$",
+      "schema": {
+        "type": "object",
+        "properties": {
+          "users": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "access_level": {
+                  "type": "integer"
+                }
+              },
+              "additionalProperties": false,
+              "required": [
+                "name",
+                "access_level"
+              ]
+            }
+          }
+        },
+        "additionalProperties": false,
+        "required": ["users"]
+      }
+    }
+  ]
+}
